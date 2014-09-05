@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Twitter Fakin Word Cloud</title>
+		<link href="../public/components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+		<link href="../public/css/style.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title">Wordcloud settings</h4>
+		      </div>
+		      <div class="modal-body">
+		        <form role="form">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+		      </div>
+		      <div class="modal-footer">
+		      	<div class="text-center">
+		        	<button type="button" class="btn btn-primary">Continue</button>
+		        </div>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<div class="container">
+			<h1>Twitter Realtime Wordcloud</h1>
+			<nav class="navbar navbar-default" role="navigation">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#">Home</a>
+			    </div>
+
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav">
+			        <li class="active"><a href="#">Latest Wordclouds</a></li>
+			        <li><a href="#">Top Wordclouds</a></li>
+			        <li><a href="#">My Wordclouds</a></li>
+			      </ul>
+			      <form class="navbar-form navbar-left" role="search">
+			        <div class="form-group">
+			          <input type="text" class="form-control" placeholder="Search">
+			        </div>
+			        <button type="submit" class="btn btn-default">Submit</button>
+			      </form>
+			      <ul class="nav navbar-nav navbar-right">
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="https://pbs.twimg.com/profile_images/501499626009010178/uGTtxgTE_normal.jpeg" width="24px" height="24px">@TwitterHandle <span class="caret"></span></a>
+			          <ul class="dropdown-menu" role="menu">
+			            <li><a href="#">Say Hi!</a></li>
+			            <li class="divider"></li>
+			            <li><a href="#">Logout</a></li>
+			          </ul>
+			        </li>
+			      </ul>
+			    </div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
+			</nav>
+		
+			<p class="text-center">
+				<a href="#" class="btn btn-primary btn-lg active" role="button">Create Wordcloud</a>
+			</p>
+			<!-- Button trigger modal -->
+				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+				  Launch demo modal
+				</button>
+			<h2>Latest Wordclouds</h2>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Keyword</th>
+						<th>Date</th>
+						<th>Occurencies</th>
+						<th>Twitter Account</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Lorem</td>
+						<td>Apr 18, 2014</td>
+						<td>224 865</td>
+						<td>@TwitterHandle</td>
+					</tr>
+					<tr>
+						<td>Lorem</td>
+						<td>Apr 18, 2014</td>
+						<td>224 865</td>
+						<td>@TwitterHandle</td>
+					</tr>
+					<tr>
+						<td>Lorem</td>
+						<td>Apr 18, 2014</td>
+						<td>224 865</td>
+						<td>@TwitterHandle</td>
+					</tr>
+					<tr>
+						<td>Lorem</td>
+						<td>Apr 18, 2014</td>
+						<td>224 865</td>
+						<td>@TwitterHandle</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<script src="../public/socket.io/socket.io.js"></script>
+		<script src="../public/components/jquery/dist/jquery.js"></script>
+		<script src="../public/components/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="../public/js/app.js"></script>
+
+	</body>
+</html>
