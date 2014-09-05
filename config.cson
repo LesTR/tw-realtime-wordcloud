@@ -1,1 +1,7 @@
 port: 1337
+twitter:
+	consumerKey: "cDrDAXA086n8K1pMuSNx5jnF9"
+	consumerSecret: "EexZ6eMyxoyiAcIdoSqYQCknUlzIiJvvcWOOLQE04hnD2XIfYI"
+session:
+	key: "fakinkey"
+	secret: "whiterabbit"
