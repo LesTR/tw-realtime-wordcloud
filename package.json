@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cson-config": "^0.1.9",
     "express": "^4.8.8",
     "franz-kafka": "^0.7.5",
     "socket.io": "^1.1.0"

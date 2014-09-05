@@ -1,0 +1,20 @@
+{
+  "name": "tw-realtime-wordcloud",
+  "version": "0.0.1",
+  "homepage": "https://github.com/LesTR/tw-realtime-wordcloud",
+  "authors": [
+    "David Moravek <david.moravek@socialbakers.com>"
+  ],
+  "description": "Nothing to see here",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0"
+  }
+}
