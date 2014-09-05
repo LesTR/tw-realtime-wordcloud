@@ -1,6 +1,7 @@
 config = require("cson-config").load()
 cookieParser = require("cookie-parser") config.session.secret
 express = require "express"
+model = require("./lib/model")()
 passport = require "passport"
 {Strategy} = require "passport-twitter"
 session = require "express-session"
@@ -48,6 +49,17 @@ app.get "/auth/twitter/callback", passport.authenticate "twitter",
 	successRedirect: "/"
 	failureRedirect: "/"
 
+# express logged in only
+
+app.use (req, res, next) ->
+	return next "Not logged in" unless req.session?.passport?.user
+	req.user = req.session.passport.user
+	next()
+
+app.post "/api/0/stream", (req, res, next) ->
+	return next "Missing key: keywords" unless req.body.keywords
+	model.registerStream req.body.keywords, next
+
 # socket.io
 
 io.use (socket, next) ->
@@ -59,8 +71,10 @@ io.use (socket, next) ->
 		sessionStore.load socket.sessionID, (e, session) ->
 			return next e if e
 			return next "Not logged in" unless session?.passport?.user
-			socket.session = session.passport.user
+			socket.user = session.passport.user
 			next()
 
 io.on "connection", (socket) ->
-	socket.emit "pokus"
+
+	socket.on "room:join", (room) -> socket.join room
+	socket.on "room:leave", (room) -> socket.leave room
