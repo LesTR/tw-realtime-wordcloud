@@ -49,6 +49,9 @@ app.get "/auth/twitter/callback", passport.authenticate "twitter",
 	successRedirect: "/"
 	failureRedirect: "/"
 
+app.get "/api/0/handshake", (req, res, next) ->
+	res.json loggedIn: !!req.session?.passport?.user
+
 # express logged in only
 
 app.use (req, res, next) ->
