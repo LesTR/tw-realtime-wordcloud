@@ -1,6 +1,6 @@
 body {
 	margin: 0 auto;
-	background: url(../img/bg.jpg) center 0 no-repeat #062236;
+	background: url(/img/bg.jpg) center 0 no-repeat #062236;
 }
 .dropdown img {
 	margin-right: 6px;
@@ -28,14 +28,14 @@ h1 {
 }
 .login-dialog p {
 	display: inline-block;
-	background: url(../img/opacity.png) 0 0 repeat;
+	background: url(/img/opacity.png) 0 0 repeat;
 	padding: 30px;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	border-radius: 20px;
 }
 .container-in {
-	background: url(../img/opacity.png) 0 0 repeat;
+	background: url(/img/opacity.png) 0 0 repeat;
 	padding: 30px;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;

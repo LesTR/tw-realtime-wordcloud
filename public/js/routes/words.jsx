@@ -40,8 +40,9 @@ var Words = React.createClass({
 			<div className="container-in">
 				<h1>Twitter Realtime WordCloud</h1>
 				<div className="form-group">
+					<label for="inputkeyword">Enter keywords separated by commas</label>
 					<input onChange={this.handleChange} type="text" className="form-control" id="inputkeyword" placeholder="Keywords" />
-					<button onClick={this.handleSend} className="btn btn-primary btn-lg" role="button">Create Wordcloud</button>
+					<button onClick={this.handleSend} className="btn btn-success btn-lg" role="button">Create WordCloud</button>
 				</div>
 			</div>
 			);
