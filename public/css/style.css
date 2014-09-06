@@ -1,6 +1,6 @@
 body {
 	margin: 0 auto;
-	background: url(/img/bg.jpg) center no-repeat;
+	background: url(/img/bg.jpg) center 0 no-repeat #062236;
 }
 .dropdown img {
 	margin-right: 6px;
@@ -9,4 +9,25 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.login-dialog {
+	text-align: center;
+	padding-top: 90px;
+}
+.login-dialog h1 {
+	color: #FFF;
+	font-size: 400%;
+	margin-bottom: 90px;
+}
+.login-dialog a {
+	font-size: 200%;
+	padding: 20px 60px;
+}
+.login-dialog p {
+	display: inline-block;
+	background: url(../img/opacity.png) 0 0 repeat;
+	padding: 30px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
 }
