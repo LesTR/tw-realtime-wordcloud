@@ -78,6 +78,9 @@ io.use (socket, next) ->
 			return next e if e
 			return next "Not logged in" unless session?.passport?.user
 			socket.user = session.passport.user
+			console.log
+				token: socket.user.token
+				secret: socket.user.secret
 			next()
 
 io.on "connection", (socket) ->
