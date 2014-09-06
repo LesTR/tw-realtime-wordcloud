@@ -21,15 +21,15 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button>
-			      <a class="navbar-brand" href="#">Home</a>
+			      <a class="navbar-brand" href="index.html">Home</a>
 			    </div>
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav">
-			        <li class="active"><a href="#">Latest Wordclouds</a></li>
-			        <li><a href="#">Top Wordclouds</a></li>
-			        <li><a href="#">My Wordclouds</a></li>
+			        <li><a href="latest.html">Latest Wordclouds</a></li>
+			        <li><a href="top.html">Top Wordclouds</a></li>
+			        <li class="active"><a href="my.html">My Wordclouds</a></li>
 			      </ul>
 			      <form class="navbar-form navbar-left" role="search">
 			        <div class="form-group">
@@ -54,46 +54,86 @@
 			<p class="text-center">
 				<a href="#" class="btn btn-primary btn-lg active" role="button">Create Wordcloud</a>
 			</p>
-			<h2>Latest Wordclouds</h2>
+			<h2>My Wordclouds</h2>
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Keyword</th>
 						<th>Date</th>
-						<th>Occurencies</th>
-						<th>Twitter Account</th>
+						<th>Occurrences</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>Lorem</td>
+						<td><a href="wordcloud.html">Lorem</a></td>
 						<td>Apr 18, 2014</td>
 						<td>224 865</td>
-						<td>@TwitterHandle</td>
+						<td>
+							<button type="button" class="btn btn-default btn-xs">
+  								<span class="glyphicon glyphicon-edit"> Edit</span>
+							</button>
+							<button type="button" class="btn btn-default btn-xs">
+  								<span class="glyphicon glyphicon-remove"> Remove</span>
+							</button>
+							<!-- <button type="button" class="btn btn-default btn-xs">
+  								<span class="glyphicon glyphicon-thumbs-up"> Vote</span>
+							</button> -->
+						</td>
 					</tr>
 					<tr>
-						<td>Lorem</td>
+						<td><a href="wordcloud.html">Lorem</a></td>
 						<td>Apr 18, 2014</td>
 						<td>224 865</td>
-						<td>@TwitterHandle</td>
+						<td>
+							<button type="button" class="btn btn-default btn-xs">
+  								<span class="glyphicon glyphicon-edit"> Edit</span>
+							</button>
+							<button type="button" class="btn btn-default btn-xs">
+  								<span class="glyphicon glyphicon-remove"> Remove</span>
+							</button>
+							<!-- <button type="button" class="btn btn-default btn-xs">
+  								<span class="glyphicon glyphicon-thumbs-up"> Vote</span>
+							</button> -->
+						</td>
 					</tr>
 					<tr>
-						<td>Lorem</td>
+						<td><a href="wordcloud.html">Lorem</a></td>
 						<td>Apr 18, 2014</td>
 						<td>224 865</td>
-						<td>@TwitterHandle</td>
+						<td>
+							<button type="button" class="btn btn-default btn-xs">
+  								<span class="glyphicon glyphicon-edit"> Edit</span>
+							</button>
+							<button type="button" class="btn btn-default btn-xs">
+  								<span class="glyphicon glyphicon-remove"> Remove</span>
+							</button>
+							<!-- <button type="button" class="btn btn-default btn-xs">
+  								<span class="glyphicon glyphicon-thumbs-up"> Vote</span>
+							</button> -->
+						</td>
 					</tr>
 					<tr>
-						<td>Lorem</td>
+						<td><a href="wordcloud.html">Lorem</a></td>
 						<td>Apr 18, 2014</td>
 						<td>224 865</td>
-						<td>@TwitterHandle</td>
+						<td>
+							<button type="button" class="btn btn-default btn-xs">
+  								<span class="glyphicon glyphicon-edit"> Edit</span>
+							</button>
+							<button type="button" class="btn btn-default btn-xs">
+  								<span class="glyphicon glyphicon-remove"> Remove</span>
+							</button>
+							<!-- <button type="button" class="btn btn-default btn-xs">
+  								<span class="glyphicon glyphicon-thumbs-up"> Vote</span>
+							</button> -->
+						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 
-		<script src="../public/socket.io/socket.io.js"></script>
+		<!-- <script src="../public/socket.io/socket.io.js"></script> -->
 		<script src="../public/components/jquery/dist/jquery.js"></script>
 		<script src="../public/components/bootstrap/dist/js/bootstrap.js"></script>
 		<script src="../public/js/app.js"></script>

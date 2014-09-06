@@ -7,33 +7,10 @@
 		<link href="../public/css/style.css" rel="stylesheet">
 	</head>
 
+
 	<body>
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		        <h4 class="modal-title">Wordcloud settings</h4>
-		      </div>
-		      <div class="modal-body">
-		        <form role="form">
-				  <div class="form-group">
-				    <input type="text" class="form-control" id="inputkeyword" placeholder="Keyword">
-				  </div>
-				  <div class="form-group">
-				    <input type="input" class="form-control" id="inputlocation" placeholder="Location (optional)">
-				  </div>
-				  <div class="form-group">
-				    <input type="input" class="form-control" id="inputlanguage" placeholder="Language (optional)">
-				  </div>
-				  <div class="text-center">
-				  	<button type="submit" class="btn btn-primary">Continue</button>
-				  </div>
-				</form>
-		      </div>
-		    </div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
+		<script src="../public/js/d3.js"></script>
+		<script src="../public/js/d3.layout.cloud.js"></script>
 		<div class="container">
 			<h1>Twitter Realtime Wordcloud</h1>
 			<nav class="navbar navbar-default" role="navigation">
@@ -52,7 +29,7 @@
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav">
-			        <li class="active"><a href="latest.html">Latest Wordclouds</a></li>
+			        <li><a href="latest.html">Latest Wordclouds</a></li>
 			        <li><a href="top.html">Top Wordclouds</a></li>
 			        <li><a href="my.html">My Wordclouds</a></li>
 			      </ul>
@@ -75,50 +52,73 @@
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
 			</nav>
-		
-			<p class="text-center">
-				<a href="#" class="btn btn-primary btn-lg active" role="button" data-toggle="modal" data-target="#myModal">Create Wordcloud</a>
-			</p>
-			<!-- Button trigger modal -->
-			<h2>Latest Wordclouds created</h2>
 			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Keyword</th>
-						<th>Date</th>
-						<th>Occurrences</th>
-						<th>Twitter Account</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><a href="wordcloud.html">Lorem</a></td>
-						<td>Apr 18, 2014</td>
-						<td>224 865</td>
-						<td>@TwitterHandle</td>
-					</tr>
-					<tr>
-						<td><a href="wordcloud.html">Lorem</a></td>
-						<td>Apr 18, 2014</td>
-						<td>224 865</td>
-						<td>@TwitterHandle</td>
-					</tr>
-					<tr>
-						<td><a href="wordcloud.html">Lorem</a></td>
-						<td>Apr 18, 2014</td>
-						<td>224 865</td>
-						<td>@TwitterHandle</td>
-					</tr>
-					<tr>
-						<td><a href="wordcloud.html">Lorem</a></td>
-						<td>Apr 18, 2014</td>
-						<td>224 865</td>
-						<td>@TwitterHandle</td>
-					</tr>
-				</tbody>
+			<tbody>
+				<tr>
+					<td>Keyword:</td>
+					<td>Bieber</td>
+				</tr>
+				<tr>
+					<td>Occurrences:</td>
+					<td>256</td>
+				</tr>
+				<tr>
+					<td>Author:</td>
+					<td>@TwitterName</td>
+				</tr>
+				<tr>
+					<td>Keyword:</td>
+					<td>Bieber</td>
+				</tr>
+				<tr>
+					<td>Subscribed:</td>
+					<td>Apr 18, 2014</td>
+				</tr>
+				<tr>
+					<td>Parameters:</td>
+					<td>Location, Language</td>
+				</tr>
+			</tbody>
 			</table>
+			<div id="wordcloud">
+			</div>
+			
 		</div>
+		<script>
+		  var fill = d3.scale.category20();
 
+		  d3.layout.cloud().size([300, 300])
+		      .words([
+		        "Hello", "world", "normally", "you", "want", "more", "words",
+		        "than", "this"].map(function(d) {
+		        return {text: d, size: 10 + Math.random() * 90};
+		      }))
+		      .padding(5)
+		      .rotate(function() { return ~~(Math.random() * 2) * 90; })
+		      .font("Impact")
+		      .fontSize(function(d) { return d.size; })
+		      .on("end", draw)
+		      .start();
+
+		  function draw(words) {
+		    d3.select("#wordcloud").append("svg")
+		        .attr("width", 1170)
+		        .attr("height", 600)
+		      .append("g")
+		        .attr("transform", "translate(150,150)")
+		      .selectAll("text")
+		        .data(words)
+		      .enter().append("text")
+		        .style("font-size", function(d) { return d.size + "px"; })
+		        .style("font-family", "Impact")
+		        .style("fill", function(d, i) { return fill(i); })
+		        .attr("text-anchor", "middle")
+		        .attr("transform", function(d) {
+		          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+		        })
+		        .text(function(d) { return d.text; });
+		  }
+		</script>
 		<!-- <script src="../public/socket.io/socket.io.js"></script> -->
 		<script src="../public/components/jquery/dist/jquery.js"></script>
 		<script src="../public/components/bootstrap/dist/js/bootstrap.js"></script>
@@ -126,3 +126,5 @@
 
 	</body>
 </html>
+
+
