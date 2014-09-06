@@ -4,7 +4,7 @@ zkManager = require "./zkNodesManager.coffee"
 
 module.exports = (kafkaClient, io) ->
 
-	consumer = new kafka.Consumer kafkaClient, [topic: "jebka", partition: 0]
+	consumer = null
 	producer = new kafka.Producer kafkaClient
 
 	consumer.on "message", (m) ->
@@ -14,14 +14,14 @@ module.exports = (kafkaClient, io) ->
 			console.error e
 
 	registerStream: (user, keywords, next) ->
-		streamId = user.profile.id
-		console.log streamId
+		topic = user.profile.id
 		async.series [
 			(next) ->
-				producer.createTopics [streamId], next
+				producer.createTopics [topic], next
 			(next) ->
-				zkManager.setKeywordPath streamId, user, keywords, next
+				zkManager.setKeywordPath topic, user, keywords, next
 			(next) ->
-				consumer.addTopics [streamId], next
+				return consumer.addTopics [topic], next if consumer
+				consumer = new kafka.Consumer kafkaClient, [{topic}]
 		], (e) ->
-			next e, topic: streamId
+			next e, {topic}
