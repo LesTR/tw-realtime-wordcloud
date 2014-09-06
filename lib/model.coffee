@@ -14,7 +14,8 @@ module.exports = (kafkaClient, io) ->
 			console.error e
 
 	registerStream: (user, keywords, next) ->
-		streamId = user.profile.id_str
+		streamId = user.profile.id
+		console.log streamId
 		async.series [
 			(next) ->
 				producer.createTopics [streamId], next

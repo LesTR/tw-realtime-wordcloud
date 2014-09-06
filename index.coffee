@@ -57,7 +57,6 @@ app.get "/auth/twitter/callback", passport.authenticate "twitter",
 
 app.get "/api/0/handshake", (req, res, next) ->
 	if req.session?.passport?.user
-		console.log req.session.passport.user.profile
 		res.json
 			loggedIn: yes
 			screenName: req.session.passport.user.profile.username
