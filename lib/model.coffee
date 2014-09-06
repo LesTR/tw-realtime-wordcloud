@@ -7,7 +7,7 @@ module.exports = (kafkaClient, io) ->
 	consumer = null
 	producer = new kafka.Producer kafkaClient
 
-	consumer.on "message", (m) ->
+	processMessage = (m) ->
 		try
 			io.to(m.topic).emit "wordcloud", JSON.parse m.value
 		catch e
@@ -23,5 +23,6 @@ module.exports = (kafkaClient, io) ->
 			(next) ->
 				return consumer.addTopics [topic], next if consumer
 				consumer = new kafka.Consumer kafkaClient, [{topic}]
+				consumer.on "message", processMessage
 		], (e) ->
 			next e, {topic}
