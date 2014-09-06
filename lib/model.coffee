@@ -1,4 +1,5 @@
 kafka = require "kafka-node"
+zkManager = require "./zkNodesManager.coffee"
 
 module.exports = (kafkaClient, io) ->
 
@@ -11,7 +12,16 @@ module.exports = (kafkaClient, io) ->
 			console.error e
 
 	registerStream: (keywords, next) ->
-		return next null, {topic: "jebka"}
+		return next "Keywords is not array" unless Array.isArray keywords
+
+		# tmp hardcoded
+		topic = "jebka"
+
+		zkManager.setKeywordPath topic, keywords, (err) ->
+			return next err if err
+
+			return next null, {topic: jebka}
+
 		@getTopic keywords, (e, topic) ->
 			return next e if e
 			consumer.addTopics [topic], (e, added) ->
