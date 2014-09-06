@@ -25,12 +25,14 @@ module.exports.deleteKeywordPath = (keyword, next) ->
 		next()
 
 
-module.exports.setKeywordPath = (path, keywords, next) ->
+module.exports.setKeywordPath = (path, user, keywords, next) ->
 	module.exports.createKeywordPath path, (err) ->
 		return next err if err
 
 		o =
 			keywords: keywords
+			token: user.token
+			secret: user.secret
 
 		path = "keywords/" + path
 		zk.set path, JSON.stringify(o), -1, (errno) ->

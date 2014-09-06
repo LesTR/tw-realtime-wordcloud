@@ -1,9 +1,11 @@
+async = require "async"
 kafka = require "kafka-node"
 zkManager = require "./zkNodesManager.coffee"
 
 module.exports = (kafkaClient, io) ->
 
 	consumer = new kafka.Consumer kafkaClient, [topic: "jebka", partition: 0]
+	producer = new kafka.Producer kafkaClient
 
 	consumer.on "message", (m) ->
 		try
@@ -11,13 +13,14 @@ module.exports = (kafkaClient, io) ->
 		catch e
 			console.error e
 
-	registerStream: (keywords, streamId, next) ->
-		return next "Keywords is not array" unless Array.isArray keywords
-
-		zkManager.setKeywordPath streamId, keywords, (err) ->
-			return next err if err
-
-			consumer.addTopics [streamId], (e, added) ->
-				return next e if e
-				next null, {streamId}
-
+	registerStream: (user, keywords, next) ->
+		streamId = user.profile.id_str
+		async.series [
+			(next) ->
+				producer.createTopics [streamId], next
+			(next) ->
+				zkManager.setKeywordPath streamId, user, keywords, next
+			(next) ->
+				consumer.addTopics [streamId], next
+		], (e) ->
+			next e, {streamId}
