@@ -1,23 +1,28 @@
+async = require "async"
 kafka = require "kafka-node"
 zkManager = require "./zkNodesManager.coffee"
 
 module.exports = (kafkaClient, io) ->
 
-	consumer = new kafka.Consumer kafkaClient, [topic: "jebka", partition: 0]
+	consumer = null
+	producer = new kafka.Producer kafkaClient
 
-	consumer.on "message", (m) ->
+	processMessage = (m) ->
 		try
 			io.to(m.topic).emit "wordcloud", JSON.parse m.value
 		catch e
 			console.error e
 
-	registerStream: (keywords, streamId, next) ->
-		return next "Keywords is not array" unless Array.isArray keywords
-
-		zkManager.setKeywordPath streamId, keywords, (err) ->
-			return next err if err
-
-			consumer.addTopics [streamId], (e, added) ->
-				return next e if e
-				next null, {streamId}
-
+	registerStream: (user, keywords, next) ->
+		topic = user.profile.id
+		async.series [
+			(next) ->
+				producer.createTopics [topic], next
+			(next) ->
+				zkManager.setKeywordPath topic, user, keywords, next
+			(next) ->
+				return consumer.addTopics [topic], next if consumer
+				consumer = new kafka.Consumer kafkaClient, [{topic}]
+				consumer.on "message", processMessage
+		], (e) ->
+			next e, {topic}

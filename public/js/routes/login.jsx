@@ -6,7 +6,7 @@ var Login = React.createClass({
 			<div className="login-dialog">
 				<h1>Twitter Realtime Wordlcloud</h1>
 				<p>
-					<a href="/auth/twitter" className="btn btn-primary btn-lg" role="button">Login with Twitter</a>
+					<a href="/auth/twitter" className="btn btn-primary btn-lg" role="button">Sign in with Twitter</a>
 				</p>
 			</div>
 			);
