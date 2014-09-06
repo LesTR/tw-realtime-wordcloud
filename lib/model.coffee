@@ -24,4 +24,4 @@ module.exports = (kafkaClient, io) ->
 			(next) ->
 				consumer.addTopics [streamId], next
 		], (e) ->
-			next e, {streamId}
+			next e, token: streamId
