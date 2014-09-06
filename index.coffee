@@ -61,7 +61,9 @@ app.use (req, res, next) ->
 
 app.post "/api/0/stream", (req, res, next) ->
 	return next "Missing key: keywords" unless req.body.keywords
-	model.registerStream req.body.keywords, next
+	model.registerStream req.body.keywords, (e, r) ->
+		return next e if e
+		res.json r
 
 # socket.io
 
