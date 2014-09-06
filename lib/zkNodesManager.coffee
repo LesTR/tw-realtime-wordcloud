@@ -34,6 +34,7 @@ module.exports.setKeywordPath = (path, user, keywords, next) ->
 			token: user.token
 			secret: user.secret
 			topic: path
+			createdAt: new Date
 
 		path = "keywords/" + path
 		zk.set path, JSON.stringify(o), -1, (errno) ->
