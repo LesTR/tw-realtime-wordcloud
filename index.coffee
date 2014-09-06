@@ -1,7 +1,9 @@
 config = require("cson-config").load()
 cookieParser = require("cookie-parser") config.session.secret
 express = require "express"
-model = require("./lib/model")()
+kafka = require "kafka"
+kafkaClient = new kafka.Client config.zookeeper
+model = require("./lib/model") kafkaClient
 passport = require "passport"
 {Strategy} = require "passport-twitter"
 session = require "express-session"

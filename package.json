@@ -14,9 +14,9 @@
     "cson-config": "^0.1.9",
     "express": "^4.8.8",
     "express-session": "^1.7.6",
+    "kafka-node": "^0.2.8",
     "passport": "^0.2.1",
     "passport-twitter": "^1.0.2",
-    "prozess": "^0.7.2",
     "socket.io": "^1.1.0"
   }
 }
