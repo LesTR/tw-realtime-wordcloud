@@ -10,8 +10,11 @@ var WordCloud = React.createClass({
 	},
 
 	shouldComponentUpdate: function(nextProps, nextState) {
-		var worlds = nextProps.data;
-		this.layout.stop().words(worlds).start();
+		var words = nextProps.data;
+		if (words.length) {
+			this.fontSize.domain([+words[words.length - 1].value || 1, +words[0].value]);
+		}
+		this.layout.stop().words(words).start();
 		return false;
 	},
 
@@ -21,12 +24,13 @@ var WordCloud = React.createClass({
 		var h = this.props.h;
 
 		this.words = [];
+		var fontSize = this.fontSize = d3.scale.log().range([10, 100]);
 
 		this.layout = d3.layout.cloud()
 			.timeInterval(10)
 			.size([w, h])
 			.fontSize(function (d) {
-				return 10 + d.value;
+				return fontSize(+d.value);
 			})
 			.text(function (d) {
 				return d.key;
