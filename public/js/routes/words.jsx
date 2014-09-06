@@ -17,6 +17,7 @@ var Words = React.createClass({
 		//this.onSend();
 		return (
 			<div className="container">
+			<ModalForm />
 				<h1>Words</h1>
 		        <NavBar />
 		        <CreateWord />
