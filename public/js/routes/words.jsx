@@ -14,12 +14,19 @@ var Words = React.createClass({
 	},
 
 	render: function () {
-		this.onSend();
+		//this.onSend();
 		return (
-			<div>
+			<div className="container">
 				<h1>Words</h1>
+		        <NavBar />
+		        <CreateWord />
+		        <Results />
 			</div>
 			);
 	}
+
+
+
+		
 
 });
