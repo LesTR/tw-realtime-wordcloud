@@ -28,14 +28,16 @@ h1 {
 }
 .login-dialog p {
 	display: inline-block;
-	background: url(/img/opacity.png) 0 0 repeat;
+	/*background: url(/img/opacity.png) 0 0 repeat;*/
+    background-color: rgba(8,34,54,0.9);
 	padding: 30px;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	border-radius: 20px;
 }
 .container-in {
-	background: url(/img/opacity.png) 0 0 repeat;
+	/*background: url(/img/opacity.png) 0 0 repeat;*/
+    background-color: rgba(8,34,54,0.9);
 	padding: 30px;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;

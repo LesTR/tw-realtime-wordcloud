@@ -17,7 +17,7 @@ var Layout = React.createClass({
 
 		this.handshake();
 		// Precteni uvodni adresy pro pripadne presmerovani
-		// console.log(Backbone.history.fragment);
+		this.entryPage = Backbone.history.fragment;
 	},
 
 	handshake: function () {
