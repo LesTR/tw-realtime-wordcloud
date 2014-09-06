@@ -15,12 +15,12 @@ module.exports = (kafkaClient, io) ->
 		return next "Keywords is not array" unless Array.isArray keywords
 
 		# tmp hardcoded
-		topic = "jebka"
+#		topic: "jebka"
 
-		zkManager.setKeywordPath topic, keywords, (err) ->
+		zkManager.setKeywordPath "test", keywords, (err) ->
 			return next err if err
 
-			return next null, {topic: jebka}
+		return next null, {topic: "test"}
 
 		@getTopic keywords, (e, topic) ->
 			return next e if e
