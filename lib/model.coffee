@@ -7,24 +7,17 @@ module.exports = (kafkaClient, io) ->
 
 	consumer.on "message", (m) ->
 		try
-			io.to("jebka").emit "wordcloud", JSON.parse m.value
+			io.to(m.topic).emit "wordcloud", JSON.parse m.value
 		catch e
 			console.error e
 
-	registerStream: (keywords, next) ->
+	registerStream: (keywords, streamId, next) ->
 		return next "Keywords is not array" unless Array.isArray keywords
 
-		# tmp hardcoded
-#		topic: "jebka"
-
-		zkManager.setKeywordPath "test", keywords, (err) ->
+		zkManager.setKeywordPath streamId, keywords, (err) ->
 			return next err if err
 
-		return next null, {topic: "test"}
-
-		@getTopic keywords, (e, topic) ->
-			return next e if e
-			consumer.addTopics [topic], (e, added) ->
+			consumer.addTopics [streamId], (e, added) ->
 				return next e if e
-				next null, {topic}
+				next null, {streamId}
 
