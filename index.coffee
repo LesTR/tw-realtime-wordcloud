@@ -1,7 +1,7 @@
 config = require("cson-config").load()
 cookieParser = require("cookie-parser") config.session.secret
 express = require "express"
-kafka = require "kafka"
+kafka = require "kafka-node"
 kafkaClient = new kafka.Client config.zookeeper
 model = require("./lib/model") kafkaClient
 passport = require "passport"
@@ -87,5 +87,8 @@ io.use (socket, next) ->
 
 io.on "connection", (socket) ->
 
-	socket.on "room:join", (room) -> socket.join room
-	socket.on "room:leave", (room) -> socket.leave room
+	socket.on "topic:subscribe", (topic) ->
+		socket.join topic
+
+	socket.on "topic:unsubscribe", (topic) ->
+		socket.leave topic
