@@ -29,7 +29,7 @@ console.log "server listening on #{config.port}"
 
 # model
 
-model = require("./lib/model") kafkaClient, io.sockets
+model = require("./lib/model") kafkaClient, io
 
 # express
 

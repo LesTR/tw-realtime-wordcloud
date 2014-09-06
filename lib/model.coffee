@@ -1,13 +1,17 @@
 kafka = require "kafka-node"
 
-module.exports = (kafkaClient, sockets) ->
+module.exports = (kafkaClient, io) ->
 
-#	consumer = new kafka.Consumer kafkaClient, [topic: "test", partition: 0], autoCommit: false
+	consumer = new kafka.Consumer kafkaClient, [topic: "jebka", partition: 0]
 
-#	consumer.on "message", (m) ->
-#		console.log m
+	consumer.on "message", (m) ->
+		try
+			io.to("jebka").emit "wordcloud", JSON.parse m.value
+		catch e
+			console.error e
 
 	registerStream: (keywords, next) ->
+		return next null, {topic: "jebka"}
 		@getTopic keywords, (e, topic) ->
 			return next e if e
 			consumer.addTopics [topic], (e, added) ->
