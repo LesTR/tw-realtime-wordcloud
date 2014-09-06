@@ -4,9 +4,9 @@ var Login = React.createClass({
 	render: function () {
 		return (
 			<div className="login-dialog">
-				<h1>Twitter Realtime WordCloud</h1>
+				<h1>Realtime Twitter Word Cloud</h1>
 				<p>
-					<a href="/auth/twitter" className="btn btn-success btn-lg" role="button">Login with Twitter</a>
+					<a href="/auth/twitter" className="btn btn-success btn-lg" role="button">Sign in with Twitter</a>
 				</p>
 			</div>
 			);
