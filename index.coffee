@@ -3,7 +3,6 @@ cookieParser = require("cookie-parser") config.session.secret
 express = require "express"
 kafka = require "kafka-node"
 kafkaClient = new kafka.Client config.zookeeper
-model = require("./lib/model") kafkaClient
 passport = require "passport"
 {Strategy} = require "passport-twitter"
 session = require "express-session"
@@ -12,7 +11,7 @@ sessionStore = new session.MemoryStore()
 # auth
 
 passport.use new Strategy config.twitter, (token, secret, profile, next) ->
-	next null, {token, secret}
+	next null, {token, secret, profile}
 
 passport.serializeUser (user, next) ->
     next null, user
@@ -27,6 +26,10 @@ server = require("http").Server app
 io = require("socket.io") server
 server.listen config.port
 console.log "server listening on #{config.port}"
+
+# model
+
+model = require("./lib/model") kafkaClient, io.sockets
 
 # express
 
@@ -53,7 +56,14 @@ app.get "/auth/twitter/callback", passport.authenticate "twitter",
 	failureRedirect: "/"
 
 app.get "/api/0/handshake", (req, res, next) ->
-	res.json loggedIn: !!req.session?.passport?.user
+	if req.session?.passport?.user
+		console.log req.session.passport.user.profile
+		res.json
+			loggedIn: yes
+			screenName: req.session.passport.user.profile.username
+			picture: req.session.passport.user.profile.photos[0]?.value
+	else
+		res.json loggedIn: no
 
 # express logged in only
 
