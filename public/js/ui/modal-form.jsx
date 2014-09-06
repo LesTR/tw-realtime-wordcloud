@@ -2,7 +2,7 @@
 var ModalForm = React.createClass({
 		  render: function() {
 		    return (
-		    	<div className="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    	<div className="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div className="modal-dialog">
 				    <div className="modal-content">
 				      <div className="modal-header">

@@ -13,7 +13,7 @@ var Layout = React.createClass({
 
 	componentWillMount: function () {
 		Backbone.history.start();
-		this.props.router.on('route', this.handleOnRoute);
+		this.props.router.on('route', this.handleRoute);
 
 		this.handshake();
 		// Precteni uvodni adresy pro pripadne presmerovani
@@ -29,20 +29,28 @@ var Layout = React.createClass({
 					this.setState({
 						loggedIn: true
 					});
-					this.handleOnRoute('words');
+					this.handleRoute('words');
 				}
 				else {
 					this.props.router.navigate('login', true);
-					this.handleOnRoute('login');
+					this.handleRoute('login');
 				}
 			}.bind(this));
 	},
 
-	handleOnRoute: function (path, parts) {
+	handleRoute: function (path, parts) {
 		this.setState({
 			route: path,
 			parts: parts || []
 		});
+	},
+
+	handleCloudCreate: function (words, topic) {
+		this.setState({
+			words: words,
+			topic: topic
+		});
+		this.props.router.navigate('cloud/' + topic, true);
 	},
 
 	renderHandshake: function () {
@@ -54,11 +62,11 @@ var Layout = React.createClass({
 	},
 
 	renderWords: function () {
-		return <Words />
+		return <Words onSend={this.handleCloudCreate} />
 	},
 
-	renderCloud: function (channelCode) {
-		return <Cloud channelCode={channelCode} socket={this.props.socket} />
+	renderCloud: function (topic) {
+		return <Cloud words={this.state.words} topic={topic} socket={this.props.socket} />
 	},
 
 	renderError: function () {
@@ -78,11 +86,7 @@ var Layout = React.createClass({
 	},
 
 	render: function () {
-		return (
-			<div className="jumbotron">
-			{this.renderContent()}
-			</div>
-			);
+		return this.renderContent();
 	}
 
 });

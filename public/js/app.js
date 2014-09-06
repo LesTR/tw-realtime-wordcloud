@@ -6,7 +6,7 @@ $(function () {
 			'': 'handshake', // GET /api/0/handshake
 			'login': 'login',
 			'words': 'words', // POST /api/0/stream
-			'cloud/:code': 'cloud',
+			'cloud/:topic': 'cloud',
 			'*default': 'error'
 		}
 	});
