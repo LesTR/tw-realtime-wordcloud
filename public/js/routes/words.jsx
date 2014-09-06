@@ -37,8 +37,8 @@ var Words = React.createClass({
 
 	render: function () {
 		return (
-			<div className="container">
-				<h1>Words</h1>
+			<div className="container-in">
+				<h1>Twitter Realtime WordCloud</h1>
 				<div className="form-group">
 					<input onChange={this.handleChange} type="text" className="form-control" id="inputkeyword" placeholder="Keywords" />
 					<button onClick={this.handleSend} className="btn btn-primary btn-lg" role="button">Create Wordcloud</button>
