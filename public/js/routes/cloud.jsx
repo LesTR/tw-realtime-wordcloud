@@ -26,7 +26,7 @@ var Cloud = React.createClass({
 
 	dataRecieve: function (data) {
 		this.setState({
-			'data': data
+			'data': data.counts
 		});
 		this.renderBubles();
 	},
