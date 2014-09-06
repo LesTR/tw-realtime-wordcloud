@@ -29,6 +29,7 @@ console.log "server listening on #{config.port}"
 # express
 
 app.use express.static "#{__dirname}/public"
+app.use require("body-parser").json()
 
 app.use session
 	key: config.session.key
