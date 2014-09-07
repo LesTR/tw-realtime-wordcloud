@@ -4,7 +4,7 @@ var Cloud = React.createClass({
 
 	getInitialState: function () {
 		return {
-			data: {}
+			data: []
 		};
 	},
 
