@@ -19,6 +19,8 @@ module.exports = (kafkaClient, io) ->
 		topic = user.profile.id
 		async.series [
 			(next) ->
+				zkManager.deleteKeywordPath topic, next # delete zk node first
+			(next) ->
 				producer.createTopics [topic], next
 			(next) ->
 				zkManager.setKeywordPath topic, user, keywords, next
