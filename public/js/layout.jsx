@@ -12,33 +12,50 @@ var Layout = React.createClass({
 	},
 
 	componentWillMount: function () {
+		this.props.router.once('route', function(path, parts){
+			// Precteni uvodni adresy pro presmerovani po overeni
+			this.entryPage = {
+				path: Backbone.history.fragment,
+				route: path,
+				parts: parts
+			};
+		}.bind(this));
 		Backbone.history.start();
 		this.props.router.on('route', this.handleRoute);
-
 		this.handshake();
-		// Precteni uvodni adresy pro pripadne presmerovani
-		this.entryPage = Backbone.history.fragment;
 	},
 
 	handshake: function () {
 		$.ajax({
 			url: "/api/0/handshake"
 		}).done(function (res) {
-				if (res.loggedIn) {
-					this.props.router.navigate('words', true);
-					this.setState({
-						loggedIn: true
-					});
-					this.handleRoute('words');
+				var path = this.entryPage.path
+				var route = this.entryPage.route
+				var parts = this.entryPage.parts
+				var loggedIn = true;
+
+				if (!res.loggedIn) {
+					path = 'login';
+					route = 'login';
+					parts = [null];
+					loggedIn = false;
 				}
-				else {
-					this.props.router.navigate('login', true);
-					this.handleRoute('login');
+				else if (route == 'login' || route == 'handshake') {
+					path = 'words';
+					route = 'words';
+					parts = [null];
 				}
+
+				this.props.router.navigate(path);
+				this.setState({
+					loggedIn: loggedIn
+				});
+				this.handleRoute(route, parts);
 			}.bind(this));
 	},
 
 	handleRoute: function (path, parts) {
+		console.log('handle route', path, parts);
 		this.setState({
 			route: path,
 			parts: parts || []
