@@ -36,6 +36,8 @@ var Error = React.createClass({
 			{key: 'was', value: 6}
 		];
 
+		words = words.sort(function(a,b){return b.value - a.value});
+
 		return (
 			<div className="container-in">
 				<WordCloud data={words} h="600" />

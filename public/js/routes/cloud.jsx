@@ -25,6 +25,7 @@ var Cloud = React.createClass({
 	},
 
 	dataRecieve: function (data) {
+		console.log(data);
 		this.setState({
 			'data': data.counts
 		});

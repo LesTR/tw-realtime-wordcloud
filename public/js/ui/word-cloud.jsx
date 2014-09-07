@@ -5,6 +5,7 @@ var WordCloud = React.createClass({
 		return {
 			w: 1110,
 			h: 400,
+			font: 'Impact',
 			data: []
 		};
 	},
@@ -25,6 +26,7 @@ var WordCloud = React.createClass({
 		this.layout = d3.layout.cloud()
 			.timeInterval(10)
 			.size([w, h])
+			.font(this.props.font)
 			.fontSize(function (d) {
 				return fontSize(+d.value);
 			})
@@ -35,7 +37,7 @@ var WordCloud = React.createClass({
 				return 0;
 			})
 			.on("word", function (d) {
-				console.log(d)
+//				console.log(d)
 			})
 			.on("end", this.draw);
 
@@ -89,7 +91,7 @@ var WordCloud = React.createClass({
 				return d.size + "px";
 			})
 			.on("click", function (d) {
-				load(d.text);
+//				load(d.text);
 			})
 			.style("opacity", 1e-6)
 			.transition()
