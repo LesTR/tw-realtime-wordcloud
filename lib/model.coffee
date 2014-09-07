@@ -24,5 +24,6 @@ module.exports = (kafkaClient, io) ->
 				return consumer.addTopics [topic], next if consumer
 				consumer = new kafka.Consumer kafkaClient, [{topic}]
 				consumer.on "message", processMessage
+				next()
 		], (e) ->
 			next e, {topic}
