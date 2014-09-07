@@ -9,7 +9,9 @@ module.exports = (kafkaClient, io) ->
 
 	processMessage = (m) ->
 		try
-			io.to(m.topic).emit "wordcloud", JSON.parse m.value
+			decoded = JSON.parse m.value
+			event = if decoded.total then "wordcloud-total" else "wordcloud"
+			io.to(m.topic).emit event, decoded
 		catch e
 			console.error e
 
