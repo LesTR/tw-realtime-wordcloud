@@ -29,7 +29,7 @@ h1 {
 .login-dialog p {
 	display: inline-block;
 	/*background: url(/img/opacity.png) 0 0 repeat;*/
-    background-color: rgba(8,34,54,0.9);
+    background-color: rgba(8,34,54,0.65);
 	padding: 30px;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
@@ -37,7 +37,7 @@ h1 {
 }
 .container-in {
 	/*background: url(/img/opacity.png) 0 0 repeat;*/
-    background-color: rgba(8,34,54,0.9);
+    background-color: rgba(8,34,54,0.8);
 	padding: 30px;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
@@ -45,11 +45,16 @@ h1 {
 	text-align: center;
 }
 
+#wordCloud {
+    margin-bottom: 50px;
+}
+
 .form-group {
 	padding: 0 20% 30px 20%;
 }
 .form-group #inputkeyword {
 	padding: 30px 20px;
+    font-size: 200%;
 }
 .form-group label {
 	color: #6FA9C0;

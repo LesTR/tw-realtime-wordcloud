@@ -63,6 +63,23 @@ var WordCloud = React.createClass({
 	},
 
 	draw: function (data, bounds) {
+		var _fill = d3.scale.ordinal().range([
+			'#798DBF',
+			'#2A4DA6',
+			'#A1BCFF',
+			'#BACEFF',
+			'#8F86FF',
+			'#807BBF',
+			'#342CA6',
+			'#ABA4FF',
+			'#C1BCFF',
+			'#7BCBFF',
+			'#75A2BF',
+			'#2874A6',
+			'#9CD8FF',
+			'#B6E2FF'
+		]);
+
 		var fill = d3.scale.category20();
 		var w = Number(this.props.w);
 		var h = Number(this.props.h);

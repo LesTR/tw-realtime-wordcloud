@@ -17,7 +17,7 @@ var Words = React.createClass({
 
 	handleChange: function (event) {
 		this.setState({
-			keywords: event.target.value.trim().split(/\s+/)
+			keywords: event.target.value.trim().split(/\s*[,;]\s*/)
 		});
 	},
 
