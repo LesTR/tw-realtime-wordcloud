@@ -6,12 +6,15 @@ var WordCloud = React.createClass({
 			w: 1110,
 			h: 400,
 			font: 'Impact',
-			data: []
+			data: [],
+			dataVersion: -1
 		};
 	},
 
 	shouldComponentUpdate: function(nextProps, nextState) {
-		this.generate(nextProps.data);
+		if(this.props.dataVersion != nextProps.dataVersion) {
+			this.generate(nextProps.data);
+		}
 		return false;
 	},
 
