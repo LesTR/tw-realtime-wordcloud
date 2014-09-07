@@ -7,7 +7,8 @@ var Layout = React.createClass({
 			route: 'handshake',
 			parts: [],
 			loggedIn: false,
-			content: null
+			picture: null,
+			screenName: null
 		};
 	},
 
@@ -33,6 +34,8 @@ var Layout = React.createClass({
 				var route = this.entryPage.route
 				var parts = this.entryPage.parts
 				var loggedIn = true;
+				var picture = res.picture || null;
+				var screenName = res.screenName || null;
 
 				if (!res.loggedIn) {
 					path = 'login';
@@ -48,7 +51,9 @@ var Layout = React.createClass({
 
 				this.props.router.navigate(path);
 				this.setState({
-					loggedIn: loggedIn
+					loggedIn: loggedIn,
+					picture: picture,
+					screenName: screenName
 				});
 				this.handleRoute(route, parts);
 			}.bind(this));
