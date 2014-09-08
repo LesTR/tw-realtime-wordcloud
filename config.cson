@@ -1,2 +1,2 @@
 port: 1337
-zookeeper: "192.168.218.53:2181/kafka0.8"
+zookeeper: "wc01.us-w2.aws.ccl:2181/kafka0.8"
