@@ -27,36 +27,25 @@ var Layout = React.createClass({
 	},
 
 	handshake: function () {
-		$.ajax({
-			url: "/api/0/handshake"
-		}).done(function (res) {
-				var path = this.entryPage.path
-				var route = this.entryPage.route
-				var parts = this.entryPage.parts
-				var loggedIn = true;
-				var picture = res.picture || null;
-				var screenName = res.screenName || null;
+			var path = this.entryPage.path
+			var route = this.entryPage.route
+			var parts = this.entryPage.parts
+			var loggedIn = true;
+			var picture = null;
+			var screenName = null;
 
-				if (!res.loggedIn) {
-					path = 'login';
-					route = 'login';
-					parts = [null];
-					loggedIn = false;
-				}
-				else if (route == 'login' || route == 'handshake') {
-					path = 'words';
-					route = 'words';
-					parts = [null];
-				}
+			path = '';
+			route = 'cloud';
+			parts = [null];
+			
 
-				this.props.router.navigate(path);
-				this.setState({
-					loggedIn: loggedIn,
-					picture: picture,
-					screenName: screenName
-				});
-				this.handleRoute(route, parts);
-			}.bind(this));
+			this.props.router.navigate(path);
+			this.setState({
+				loggedIn: loggedIn,
+				picture: picture,
+				screenName: screenName
+			});
+			this.handleRoute(route, parts);
 	},
 
 	handleRoute: function (path, parts) {
@@ -72,7 +61,7 @@ var Layout = React.createClass({
 			words: words,
 			topic: topic
 		});
-		this.props.router.navigate('cloud/' + topic, true);
+		this.props.router.navigate('cloud/', true);
 	},
 
 	renderHandshake: function () {
