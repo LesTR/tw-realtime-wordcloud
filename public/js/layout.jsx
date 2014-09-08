@@ -97,8 +97,6 @@ var Layout = React.createClass({
 
 	renderContent: function () {
 		var routes = {
-			handshake: this.renderHandshake,
-			login: this.renderLogin,
 			words: this.renderWords,
 			cloud: this.renderCloud,
 			error: this.renderError

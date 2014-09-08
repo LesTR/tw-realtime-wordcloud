@@ -3,10 +3,7 @@ $(function () {
 	var socket = io();
 	var Router = Backbone.Router.extend({
 		routes: {
-			'': 'handshake', // GET /api/0/handshake
-			'login': 'login',
-			'words': 'words', // POST /api/0/stream
-			'cloud/:topic': 'cloud',
+			'': 'cloud',
 			'*default': 'error'
 		}
 	});
