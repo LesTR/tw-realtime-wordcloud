@@ -1,13 +1,2 @@
 port: 1337
-twitter:
-	consumerKey: "cDrDAXA086n8K1pMuSNx5jnF9"
-	consumerSecret: "EexZ6eMyxoyiAcIdoSqYQCknUlzIiJvvcWOOLQE04hnD2XIfYI"
-session:
-	key: "fakinkey"
-	secret: "whiterabbit"
 zookeeper: "192.168.218.53:2181/kafka0.8"
-zookeeperWordcloud:
-	hosts: ["192.168.218.53:2181"]
-	root: "/wordcloud"
-	autoResetWatches: false
-
