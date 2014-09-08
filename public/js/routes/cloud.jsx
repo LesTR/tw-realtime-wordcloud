@@ -31,14 +31,14 @@ var Cloud = React.createClass({
 		console.log(data);
 		this.setState({
 			'data': data.counts,
-			'keywords': data.keywords,
 			'dataVersion': this.state.dataVersion + 1
 		});
 	},
 
 	countRecieve: function (data) {
 		this.setState({
-			'total': data.total
+			'total': data.total,
+			'keywords': data.keywords
 		});
 	},
 
