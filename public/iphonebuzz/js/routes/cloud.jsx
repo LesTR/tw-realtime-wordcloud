@@ -28,7 +28,6 @@ var Cloud = React.createClass({
 	},
 
 	dataRecieve: function (data) {
-		console.log(data);
 		this.setState({
 			'data': data.counts,
 			'dataVersion': this.state.dataVersion + 1
