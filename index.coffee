@@ -21,3 +21,4 @@ app.use express.static "#{__dirname}/public"
 app.use require("body-parser").json()
 
 app.get "/", (req, res) -> res.sendFile "#{__dirname}/index.html"
+app.get "/iphonebuzz", (req, res) -> res.sendFile "#{__dirname}/index.html"
