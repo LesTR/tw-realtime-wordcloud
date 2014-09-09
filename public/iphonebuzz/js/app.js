@@ -1,6 +1,6 @@
 $(function () {
 
-	var socket = io();
+	var socket = io({path:'/iphonebuzz/socket.io'});
 	var Router = Backbone.Router.extend({
 		routes: {
 			'': 'cloud',

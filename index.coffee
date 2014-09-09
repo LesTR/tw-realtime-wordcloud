@@ -7,7 +7,8 @@ kafkaClient = new kafka.Client config.zookeeper
 
 app = express()
 server = require("http").Server app
-io = require("socket.io") server
+io = require("socket.io") server, {path: "/iphonebuzz/socket.io"}
+console.log io
 server.listen config.port
 console.log "server listening on #{config.port}"
 
