@@ -2,6 +2,7 @@ config = require("cson-config").load()
 express = require "express"
 kafka = require "kafka-node"
 kafkaClient = new kafka.Client config.zookeeper
+util = require 'util'
 
 # start server
 
@@ -9,7 +10,7 @@ app = express()
 server = require("http").Server app
 io = require("socket.io") server, {path: "/iphonebuzz/socket.io"}
 setInterval ()->
-	console.log "clients connected: #{Object.keys(io.sockets.connected).length}"
+	util.log "clients connected: #{Object.keys(io.sockets.connected).length}"
 ,10000
 server.listen config.port
 console.log "server listening on #{config.port}"
